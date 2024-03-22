@@ -1,0 +1,15 @@
+#include "martini_v2.2.itp"
+#include "elp_1.itp"
+#include "martini_v2.0_ions.itp"
+#include "elp_2.itp"
+
+
+#include "Protein.itp"
+
+[ system ]
+; name
+Martini system from ./G2C3/G2C3_AA.pdb
+
+[ molecules ]
+; name        number
+Protein 	 1
