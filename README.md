@@ -1,7 +1,7 @@
-### ELP Generation built on PyMOL
+## ELP Generation built on PyMOL
 
 #### Prerequisite #### 
-The code is built upon python2 and the build_sequence code by Robert L. Campbell.
+The code is built upon python2 and the `build_sequence.py` code by Robert L. Campbell.
 
 The following packages are required
 
@@ -10,6 +10,7 @@ The following packages are required
 -- PyMOL (version 2): can be installed by `conda install -c schrodinger pymol` (version 3 is not compatible with build_sequence code)
 
 -- martinize.py : the python2 version (http://cgmartini.nl/index.php/tools2/proteins-and-bilayers/204-martinize)
+
 
 #### Usage
 
@@ -20,7 +21,7 @@ example: `python main.py -x1 G -m 2 -x2 L -n 3 -save_dir . -save`
 example: `python main.py -x1 G -m 2 -x2 L -n 3 -save_dir . --no-save`
 
 
-usage: python main_genelp.py [-h] [-x1 X1] [-m M] [-x2 X2] [-n N] [-save or --no-save] [-save_dir SAVE_DIR]
+usage: python main.py [-h] [-x1 X1] [-m M] [-x2 X2] [-n N] [-save or --no-save] [-save_dir SAVE_DIR]
 
 
 Arguments for ELP generation, X1 is hydrophilic and X2 is hydrophobic
@@ -48,6 +49,7 @@ optional arguments:
 #### modify_itp.py
 
 This is used to modify the C terminal to neutral, and to generate the itp files with state A and B for alchemical simulations.
+
 
 #### batch_gen.sh
 
