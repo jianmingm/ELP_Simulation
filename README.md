@@ -36,7 +36,7 @@ This is used to modify the C terminal to neutral, and to generate the itp files 
 
 ## batch_gen.sh
 
-The gen.sh takes 4 arguments that include the number of the first residue, the number of the second residue, whether to save pdbs and the save directory.
+The batch_gen.sh takes 4 arguments that include the number of the first residue, the number of the second residue, whether to save pdbs and the save directory.
 
 Then it will run the main.py and then output the sequence into ELP.dat in the specified directories.
 
