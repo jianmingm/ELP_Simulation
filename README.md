@@ -1,13 +1,13 @@
 ## ELP Generation built on PyMOL
 
 #### Prerequisite #### 
-The code is built upon python2 and the `build_sequence.py` code by Robert L. Campbell.
+The code is built upon python2 and the `build_seq.py` code by Robert L. Campbell.
 
 The following packages are required
 
 -- python2 : it is because PyMOL and its third party codes are majorly compatible with python2
 
--- PyMOL (version 2): can be installed by `conda install -c schrodinger pymol` (version 3 is not compatible with build_sequence code)
+-- PyMOL (version 2): can be installed by `conda install -c schrodinger pymol` (version 3 is not compatible with build_seq code)
 
 -- martinize.py : the python2 version (http://cgmartini.nl/index.php/tools2/proteins-and-bilayers/204-martinize)
 
