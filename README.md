@@ -15,12 +15,12 @@ The following packages are required
 
 The help message can be displayed by `python main_genelp.py -h`
 
-example: `python main_genelp.py -x1 G -m 2 -x2 L -n 3 -save_dir . -save`
+example: `python main.py -x1 G -m 2 -x2 L -n 3 -save_dir . -save`
 
-example: `python main_genelp.py -x1 G -m 2 -x2 L -n 3 -save_dir . --no-save`
+example: `python main.py -x1 G -m 2 -x2 L -n 3 -save_dir . --no-save`
 
 
-usage: main_genelp.py [-h] [-x1 X1] [-m M] [-x2 X2] [-n N] [-save or --no-save] [-save_dir SAVE_DIR]
+usage: python main_genelp.py [-h] [-x1 X1] [-m M] [-x2 X2] [-n N] [-save or --no-save] [-save_dir SAVE_DIR]
 
 
 Arguments for ELP generation, X1 is hydrophilic and X2 is hydrophobic
