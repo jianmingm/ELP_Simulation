@@ -17,7 +17,7 @@ set2="I V L F C M A"
 
 for x in $set1; do
     for y in $set2; do
-        python main_genelp.py -x1 $x -m $m -x2 $y -n $n -save_dir ${save_dir}/m${m}n${n} $save 
+        python main.py -x1 $x -m $m -x2 $y -n $n -save_dir ${save_dir}/m${m}n${n} $save 
     done
 done
 

@@ -11,25 +11,32 @@ if __name__ == "__main__":
     ####   ELP Generation   ####
     ############################
     parser = argparse.ArgumentParser(description='Arguments for ELP generation, X1 is hydrophilic and X2 is hydrophobic')
-    parser.add_argument('-x1', type=str, help='X1 is hydrophilic, choose from the following: {G, T, S, W, Y, H, E, Q, D, N, K, R}')
+    parser.add_argument('-x1', type=str, help='X1 is hydrophilic, from the following: {G, T, S, W, Y, H, E, Q, D, N, K, R}')
     parser.add_argument('-m', type=int, help='Repeat of the fragment 1: (VPGX1G)m')
-    parser.add_argument('-x2', type=str, help='X2 is hydrophobic, choose from the following: {I, V, L, F, C, M, A}')
+    parser.add_argument('-x2', type=str, help='X2 is hydrophobic, from the following: {I, V, L, F, C, M, A}')
     parser.add_argument('-n', type=int, help='Repeat of the fragment 2: (VPGX2G)n')
+    parser.add_argument('-type', default='diblock', type=str, help='Triblock or Diblock ELPs.')
     parser.add_argument('-save', dest='save', action='store_true', help='Save pdb and CG models')
     parser.add_argument('--no-save', dest='save', action='store_false', help='Do not save pdb')
     parser.add_argument('-save_dir', type=str, help='The Directory to store the aa and cg pdb, Default: the working directory')
     parser.set_defaults(save=True)
 
     args = parser.parse_args()
-
-    print('X1 is {} and X2 is {}'.format(args.x1, args.x2))
-
+    
     fragment1 = 'VPG{}G'.format(args.x1)
     fragment2 = 'VPG{}G'.format(args.x2)
-    seq = fragment1*args.m + fragment2*args.n
-
-    ELP_name = '{}{}{}{}'.format(args.x1, args.m, args.x2, args.n)
-    whole_ELP_name = '({}){}({}){}'.format(fragment1, args.m, fragment2, args.n)
+    fragment3 = 'VPG{}G'.format(args.x3)
+    
+    if args.type=='triblock':
+        print('X1 is {} and X2 is {} and X3 is {} in the triblock ELP'.format(args.x1, args.x2, args.x1))
+        seq = fragment1*args.m + fragment2*args.n + fragment1*args.m
+        ELP_name = '{}{}{}{}{}{}'.format(args.x1, args.m, args.x2, args.n, args.x1, args.m)
+        whole_ELP_name = '({}){}({}){}'.format(fragment1, args.m, fragment2, args.n, fragment1, args.m)
+    elif args.type=='diblock':
+        print('X1 is {} and X2 is {} in the diblock ELP'.format(args.x1, args.x2))
+        seq = fragment1*args.m + fragment2*args.n
+        ELP_name = '{}{}{}{}'.format(args.x1, args.m, args.x2, args.n)
+        whole_ELP_name = '({}){}({}){}'.format(fragment1, args.m, fragment2, args.n)
 
     dir_path = args.save_dir+"/"+ELP_name
         
@@ -64,7 +71,14 @@ if __name__ == "__main__":
     
         # Only the atom types and charges are changed 
         # The other bonded terms are not perturbed and thus can be copied from state A to state B by gromacs during gompp
-        modify_C_ter('Protein.itp')
+        # Note only when all bonded interactions are explicitely defined in the itp file
+        # Otherwise, the gromacs will report errors
+        if args.type=='diblock':
+            modify_C_ter('Protein.itp')
+            print('For diblock ELPs, the C terminal is modified to be neutral')
+        else:
+            print('For triblock ELPs, the C terminal is not modified')
+            
         add_mass('Protein.itp')
         gen_elp_1('Protein.itp', 'elp_1.itp')
         gen_elp_2('Protein.itp', 'elp_2.itp')
