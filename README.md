@@ -1,5 +1,5 @@
-# ELP Generation built on PyMOL
-
+# ELP Generation and Screening built on PyMOL
+## In Progress ...
 ## Prerequisite 
 The code is built upon python2 and the `build_seq.py` code by Robert L. Campbell.
 
