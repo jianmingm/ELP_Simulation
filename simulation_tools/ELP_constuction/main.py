@@ -25,7 +25,6 @@ if __name__ == "__main__":
     
     fragment1 = 'VPG{}G'.format(args.x1)
     fragment2 = 'VPG{}G'.format(args.x2)
-    fragment3 = 'VPG{}G'.format(args.x3)
     
     if args.type=='triblock':
         print('X1 is {} and X2 is {} and X3 is {} in the triblock ELP'.format(args.x1, args.x2, args.x1))
@@ -53,6 +52,8 @@ if __name__ == "__main__":
         print('\n### All-Atom ELP Successfully Generated and Saved to {} ! ###\n'.format(dir_path))
 
     else:
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
         with open("{}/ELP.dat".format(args.save_dir), 'a') as f:
             f.write(ELP_name+" : "+seq+"\n")
         print('### Only String is Saved to {} ! ###\n'.format(args.save_dir))
